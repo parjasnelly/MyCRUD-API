@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
         return
     }
 
-    const user = await uRepo.insert(u)
+    const users = await uRepo.insert(u)
     resp = {
         status: 'OK',
         data: `User id ${user.id} created successfully`
@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
 // Atualizar um User já criado
 router.put('/:id', async(req, res) => {
 
-    let uid = parseI(req.params.id)
+    let uid = parseInt(req.params.id)
     let u = req.body
 
     if(u.name == undefined || u.email == undefined){
@@ -75,7 +75,7 @@ router.put('/:id', async(req, res) => {
         return
     }
 
-    user = await uRepo.find(uid)
+    const user = await uRepo.find(uid)
     if(user == undefined){
         resp = {
             status: 'Error',
@@ -87,7 +87,7 @@ router.put('/:id', async(req, res) => {
     user.name = u.name
     user.email = u.email
 
-    uRepo.update(user)
+    await uRepo.update(user)
 
     resp = {
         status: 'OK',
@@ -99,7 +99,7 @@ router.put('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
 
     let uid = parseInt(req.params.id)
-    user = await uRepo.find(uid)
+    const user = await uRepo.find(uid)
 
     if(user == undefined){
         resp = {
