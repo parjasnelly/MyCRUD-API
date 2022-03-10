@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
         return
     }
 
-    const users = await uRepo.insert(u)
+    const user = await uRepo.insert(u)
     resp = {
         status: 'OK',
         data: `User id ${user.id} created successfully`
@@ -84,10 +84,8 @@ router.put('/:id', async(req, res) => {
         res.status(404).send(JSON.stringify(resp))
         return
     }
-    user.name = u.name
-    user.email = u.email
 
-    await uRepo.update(user)
+    await uRepo.update(u, uid)
 
     resp = {
         status: 'OK',
