@@ -28,7 +28,7 @@ class UserController {
     } else {
       let resp = {
         status: "Error",
-        description: `User with id ${uid} was not found.`,
+        description: `User with id ${uid} was not found!`,
       };
       res.status(404).json(resp);
     }
@@ -40,14 +40,14 @@ class UserController {
     if (u.name === undefined || u.email === undefined) {
       let resp = {
         status: "Error",
-        description: `User JSON with name and email fields must be provided.`,
+        description: `User JSON with name and email fields must be provided!`,
       };
       res.status(400).json(resp);
     } else {
       const user = await uRepo.insert(u);
       let resp = {
         status: "OK",
-        data: `User with id ${user.id} created successfully`,
+        data: `User with id ${user.id} created successfully!`,
       };
       res.status(200).json(resp);
     }
@@ -60,7 +60,7 @@ class UserController {
     if (u.name === undefined || u.email === undefined) {
       let resp = {
         status: "Error",
-        description: `User JSON must be provided.`,
+        description: `User JSON must be provided!`,
       };
       return res.status(400).json(resp);
     }
@@ -72,13 +72,13 @@ class UserController {
 
       let resp = {
         status: "OK",
-        data: `User id ${uid} updated successfully`,
+        data: `User id ${uid} updated successfully!`,
       };
       res.status(200).json(resp);
     } else {
       let resp = {
         status: "Error",
-        description: `User id ${uid} was not found.`,
+        description: `User id ${uid} was not found!`,
       };
       res.status(404).json(resp);
     }
@@ -93,13 +93,13 @@ class UserController {
 
       let resp = {
         status: "OK",
-        data: `User id ${uid} deleted successfully`,
+        data: `User id ${uid} deleted successfully!`,
       };
       res.status(200).json(resp);
     } else {
       let resp = {
         status: "Error",
-        description: `User id ${uid} was not found.`,
+        description: `User id ${uid} was not found!`,
       };
       res.status(404).json(resp);
     }
